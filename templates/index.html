@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="hero-section text-center py-5 bg-light">
+    <div class="container">
+        <h1 class="display-4">Welcome to CyberLearn Hub</h1>
+        <p class="lead">Your comprehensive guide to cybersecurity from beginner to advanced levels</p>
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="CyberLearn Hub Logo" class="img-fluid my-4" style="max-height: 200px;">
+        <div class="mt-4">
+            {% if 'user_id' not in session %}
+                <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg mx-2">Join Now</a>
+                <a href="{{ url_for('login') }}" class="btn btn-outline-primary btn-lg mx-2">Login</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="card-title">Beginner Resources</h2>
+                    <p class="card-text">Start your cybersecurity journey with our beginner-friendly tutorials and guides.</p>
+                    <a href="{{ url_for('resources') }}#beginner" class="btn btn-outline-primary">Explore</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="card-title">Intermediate Content</h2>
+                    <p class="card-text">Take your skills to the next level with hands-on labs and challenges.</p>
+                    <a href="{{ url_for('resources') }}#intermediate" class="btn btn-outline-primary">Explore</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="card-title">Advanced Topics</h2>
+                    <p class="card-text">Master advanced cybersecurity concepts with our expert-curated resources.</p>
+                    <a href="{{ url_for('resources') }}#advanced" class="btn btn-outline-primary">Explore</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Upcoming Events</h2>
+        <div class="row">
+            {% for event in Event.query.order_by(Event.date.asc()).limit(3).all() %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title">{{ event.title }}</h3>
+                        <p class="card-text">{{ event.description[:100] }}...</p>
+                        <p class="text-muted">{{ event.date.strftime('%B %d, %Y') }}</p>
+                        <a href="{{ url_for('event_detail', event_id=event.id) }}" class="btn btn-primary">Details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-3">
+            <a href="{{ url_for('events') }}" class="btn btn-outline-primary">View All Events</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
