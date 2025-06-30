@@ -1,0 +1,79 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    border-radius: 0 0 20px 20px;
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.resource-section {
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+}
+
+/* Navbar Styles */
+.navbar-brand {
+    font-weight: 700;
+}
+
+.navbar-brand img {
+    margin-right: 10px;
+}
+
+/* Footer Styles */
+footer {
+    border-top: 1px solid #e9ecef;
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #1e3c72;
+    border-color: #1e3c72;
+}
+
+.btn-primary:hover {
+    background-color: #2a5298;
+    border-color: #2a5298;
+}
+
+.btn-outline-primary {
+    color: #1e3c72;
+    border-color: #1e3c72;
+}
+
+.btn-outline-primary:hover {
+    background-color: #1e3c72;
+    border-color: #1e3c72;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 2rem 0;
+    }
+    
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-section p.lead {
+        font-size: 1rem;
+    }
+}
