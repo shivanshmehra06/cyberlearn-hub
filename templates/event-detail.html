@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}{{ event.title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h1 class="card-title">{{ event.title }}</h1>
+                    <p class="text-muted">Posted by Admin on {{ event.date.strftime('%B %d, %Y') }}</p>
+                    
+                    <div class="event-details mb-4">
+                        <p><strong>Date:</strong> {{ event.date.strftime('%B %d, %Y at %I:%M %p') }}</p>
+                        {% if event.location %}
+                            <p><strong>Location:</strong> {{ event.location }}</p>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="event-content">
+                        <p>{{ event.description }}</p>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <a href="{{ url_for('events') }}" class="btn btn-outline-primary">Back to Events</a>
+                        {% if 'user_id' in session %}
+                            <button class="btn btn-primary">Register for Event</button>
+                        {% else %}
+                            <a href="{{ url_for('login') }}" class="btn btn-primary">Login to Register</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Event Details</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>Date:</strong> {{ event.date.strftime('%B %d, %Y') }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Time:</strong> {{ event.date.strftime('%I:%M %p') }}
+                        </li>
+                        {% if event.location %}
+                        <li class="list-group-item">
+                            <strong>Location:</strong> {{ event.location }}
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
